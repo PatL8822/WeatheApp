@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    padding: 30px;
+    text-align: center;
+    border: 2px black solid;
+    background-color: cyan;
+}
+
+input {
+    margin-right: 5px;
+    margin-top: 20px;
+    margin-left:  20px;
+    margin-bottom: 20px;
+    height: 20px;
+    text-align: center
+}
+
+.submit{
+    height: 25px;
+    width: 75px;
+}
+
+.submit:hover{
+    color: whitesmoke;
+    background-color: black;
+}
+
+/*THis is for ruture styling as well as to see what the container is doing*/
+/* .cityContainer{
+    width: 250px;
+    border: 1px solid black;
+} */
+
+.line{
+    width: 275px;
+}
+
+ul li button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 200px;
+    background-color: lightgray;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+ul li button:hover{
+    color: whitesmoke;
+    background-color: black;
+}
