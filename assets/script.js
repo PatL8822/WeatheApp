@@ -2,6 +2,9 @@
 const cityInput = document.querySelector('#city');
 const submitBtn = document.querySelector('#submit');
 const cityRef = document.querySelector('#cityRef');
+const crntWeather = document.querySelector('#currentWeather');
+const fiveDay = document.querySelector('#fiveDayForcast');
+
 var apiKey = "eea20da06cb196d467d9e8ec12c0d5bd";
 var city;
 var cityName;
@@ -10,20 +13,22 @@ var cities = [];
 submitBtn.addEventListener('click', citySearchHistory);
 
 function citySearchHistory(){
-    var newLI = document.createElement('ul');
+    cityRef.classList.remove('hide');
+    var newUl = document.createElement('ul');
     var btn = document.createElement('button');
-    cityRef.appendChild(newLI);
-    newLI.appendChild(btn);
-    cityName =cityInput.value;
+    cityRef.appendChild(newUl);
+    newUl.appendChild(btn);
+    cityName = cityInput.value;
     cities.push(cityName);
     btn.textContent = cityName;
     localStorage.setItem("City",JSON.stringify(cities))
     localStorage.getItem("City");
+    fetchWeather()
 }
 
 function fetchWeather(){
 
-    var weatherURLTwo = `https://api.openweathermap.org/data/2.5/weather?q=${'Puyallup'}&appid=${apiKey}`;
+    var weatherURLTwo = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
     fetch(weatherURLTwo).then(function(response){
         return response.json();

@@ -67,11 +67,15 @@ legend {
     font-size: 40px;
 }
 
-.one {}
+/* .one {}
 
-.two {}
+.two {} */
 
 .three {
     text-align: center;
     font-size: 25px;
+}
+
+.hide {
+    display: none;
 }
