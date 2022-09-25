@@ -4,38 +4,84 @@ const submitBtn = document.querySelector('#submit');
 const cityRef = document.querySelector('#cityRef');
 const crntWeather = document.querySelector('#currentWeather');
 const fiveDay = document.querySelector('#fiveDayForcast');
-
 var apiKey = "eea20da06cb196d467d9e8ec12c0d5bd";
 var city;
 var cityName;
 var cities = [];
 
-submitBtn.addEventListener('click', citySearchHistory);
+submitBtn.addEventListener('click', setCitySearchHistory);
 
-function citySearchHistory(){
+function setCitySearchHistory(){
+    
+    cityName = cityInput.value;
+    
+    if (cityName){
     cityRef.classList.remove('hide');
     var newUl = document.createElement('ul');
     var btn = document.createElement('button');
     cityRef.appendChild(newUl);
     newUl.appendChild(btn);
-    cityName = cityInput.value;
     cities.push(cityName);
     btn.textContent = cityName;
-    localStorage.setItem("City",JSON.stringify(cities))
-    localStorage.getItem("City");
-    fetchWeather()
+    }
+    apiWeatherFetch()
 }
 
-function fetchWeather(){
+function apiWeatherFetch(){
 
-    var weatherURLTwo = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+    var weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
 
-    fetch(weatherURLTwo).then(function(response){
+    fetch(weatherURL)
+        .then(function(response){
         return response.json();
     })
     .then(function(data){
-        console.log(data)
+        brodcastWeather(data);
     })
+}
+
+function brodcastWeather(weather){
+    console.log(weather)
+    var city = document.createElement('h2');
+    city.textContent = weather.name;
+    crntWeather.appendChild(city);
+
+    // current temp
+    var temp = document.createElement('p');
+    temp.textContent = 'Current Temp:' + ' ' + weather.main.temp + '°';
+    crntWeather.appendChild(temp);
+
+    // feels like
+    var feelsLike = document.createElement('p');
+    feelsLike.textContent = 'Feels like:' + ' ' +
+     weather.main.feels_like + '°';
+    crntWeather.appendChild(feelsLike);
+
+    //high of 
+    var high = document.createElement('p');
+    high.textContent = 'Todays High:' + ' ' + weather.main.temp_max + '°';
+    crntWeather.appendChild(high);
+
+    // low of
+    var low = document.createElement('p');
+        low.textContent = 'Toddays low:' + ' ' + weather.main.temp_min + '°'
+        crntWeather.appendChild(low);
+
+    // humidity
+    var  humidity = document.createElement('p');
+    humidity.textContent = 'Humidity:' + ' ' + weather.main.humidity;
+    crntWeather.appendChild(humidity);
+
+    // wind
+    var  wind = document.createElement('p');
+    wind.textContent = 'Wind speed:' + ' ' + weather.wind.speed +
+     ' ' + 'MPH';
+    crntWeather.appendChild(wind);
+
+    //wind direction
+    var windDeg = document.createElement('p');
+    windDeg.textContent = 'Wind Direction:' + ' ' + weather.wind.deg + '°';
+    crntWeather.appendChild(windDeg);
 }
 
 
