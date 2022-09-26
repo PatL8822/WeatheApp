@@ -67,9 +67,25 @@ legend {
     font-size: 40px;
 }
 
-/* .one {}
 
-.two {} */
+.one {
+    text-align: center;
+}
+
+.two {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.two div {
+    width: 150px;
+    margin: 30px 20px 30px 100px;
+    padding-left: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
 
 .three {
     text-align: center;

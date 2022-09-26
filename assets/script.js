@@ -8,6 +8,7 @@ var apiKey = "eea20da06cb196d467d9e8ec12c0d5bd";
 var city;
 var cityName;
 var cities = [];
+var calc = [1,2,3,4,5]
 
 submitBtn.addEventListener('click', setCitySearchHistory);
 
@@ -25,6 +26,7 @@ function setCitySearchHistory(){
     btn.textContent = cityName;
     }
     apiWeatherFetch()
+    fiveDayForcast()
 }
 
 function apiWeatherFetch(){
@@ -48,24 +50,8 @@ function brodcastWeather(weather){
 
     // current temp
     var temp = document.createElement('p');
-    temp.textContent = 'Current Temp:' + ' ' + weather.main.temp + '°';
+    temp.textContent = 'Current Temp:' + ' ' + weather.main.temp + '°F';
     crntWeather.appendChild(temp);
-
-    // feels like
-    var feelsLike = document.createElement('p');
-    feelsLike.textContent = 'Feels like:' + ' ' +
-     weather.main.feels_like + '°';
-    crntWeather.appendChild(feelsLike);
-
-    //high of 
-    var high = document.createElement('p');
-    high.textContent = 'Todays High:' + ' ' + weather.main.temp_max + '°';
-    crntWeather.appendChild(high);
-
-    // low of
-    var low = document.createElement('p');
-        low.textContent = 'Toddays low:' + ' ' + weather.main.temp_min + '°'
-        crntWeather.appendChild(low);
 
     // humidity
     var  humidity = document.createElement('p');
@@ -84,8 +70,44 @@ function brodcastWeather(weather){
     crntWeather.appendChild(windDeg);
 }
 
+function fiveDayForcast(){
+    var fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`;
 
+    fetch(fiveDayURL)
+        .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        dayList(data);
+        console.log(data)
+    })
+}
 
+function dayList(list){
+    
+    // for loop for 5 day forcast with 3 hour inrements for each day
+    for (var i = 0; i < list.list.length; i++){
+        var divEl = document.createElement('div');
+        var h2El = document.createElement('h2');
+        var tempEl = document.createElement('p');
+        var windEl = document.createElement('p');
+        var humidityEl = document.createElement('p');
+        var dateEl = document.createElement('p');
+        h2El.textContent = list.city.name;
+        tempEl.textContent = 'Temp:' + ' ' + list.list[i].main.temp;
+        windEl.textContent = 'Wind:' + ' ' + list.list[i].wind.speed;
+        humidityEl.textContent = 'Humidity:' + ' ' + list.list[i].main.
+        humidity;
+        dateEl.textContent = 'Date' + ' ' + list.list[i].dt_txt;
+        fiveDay.appendChild(divEl);
+        divEl.appendChild(dateEl);
+        divEl.appendChild(h2El);
+        divEl.appendChild(tempEl);
+        divEl.appendChild(windEl);
+        divEl.appendChild(humidityEl);
+    
+    }
+}
 
 
 
