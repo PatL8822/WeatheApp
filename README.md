@@ -2,12 +2,7 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+I am wanting to push my skills further  to learn server side API. Therefore I challenged myself to take on a weather app. It solves one's curiosity of weather in a different state in the US. I learned so much even though my time crunch was so short. I figured out how to loop through data and use math to extract the exact days that needed to be displayed. 
 
 ## Credits
 
@@ -39,6 +34,10 @@ SOFTWARE.
 
 
 ## Screen Shot
+![Screenshot (1)](https://user-images.githubusercontent.com/110148234/192435784-9073e9bc-1275-4310-907c-65c8d4b29ce3.png)
+
+![Screenshot (4)](https://user-images.githubusercontent.com/110148234/192435826-0fc43886-cdd1-4274-8135-b49631ed9147.png)
+
 
 
 
