@@ -8,16 +8,19 @@ var apiKey = "eea20da06cb196d467d9e8ec12c0d5bd";
 var city;
 var cityName;
 var cities = [];
-var calc = [1,2,3,4,5]
 
 submitBtn.addEventListener('click', setCitySearchHistory);
 
 function setCitySearchHistory(){
     
     cityName = cityInput.value;
+   
     
     if (cityName){
     cityRef.classList.remove('hide');
+    cities.push(cityInput.value);
+    console.log(cities)
+    localStorage.setItem('cities', JSON.stringify(cities));
     var newUl = document.createElement('ul');
     var btn = document.createElement('button');
     cityRef.appendChild(newUl);
@@ -87,6 +90,7 @@ function dayList(list){
     
     // for loop for 5 day forcast with 3 hour inrements for each day
     for (var i = 0; i < list.list.length; i++){
+        var indexForcast = 1+i*8
         var divEl = document.createElement('div');
         var h2El = document.createElement('h2');
         var tempEl = document.createElement('p');
@@ -94,11 +98,11 @@ function dayList(list){
         var humidityEl = document.createElement('p');
         var dateEl = document.createElement('p');
         h2El.textContent = list.city.name;
-        tempEl.textContent = 'Temp:' + ' ' + list.list[i].main.temp;
-        windEl.textContent = 'Wind:' + ' ' + list.list[i].wind.speed;
-        humidityEl.textContent = 'Humidity:' + ' ' + list.list[i].main.
+        tempEl.textContent = 'Temp:' + ' ' + list.list[indexForcast].main.temp;
+        windEl.textContent = 'Wind:' + ' ' + list.list[indexForcast].wind.speed;
+        humidityEl.textContent = 'Humidity:' + ' ' + list.list[indexForcast].main.
         humidity;
-        dateEl.textContent = 'Date' + ' ' + list.list[i].dt_txt;
+        dateEl.textContent = 'Date' + ' ' + list.list[indexForcast].dt_txt;
         fiveDay.appendChild(divEl);
         divEl.appendChild(dateEl);
         divEl.appendChild(h2El);
